@@ -1,1 +1,22 @@
-/* You can add global styles to this file, and also import other style files */
+@use './app/styles/mixins.scss' as *;
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+}
+
+.cont {
+    @include FlexContainer;
+    height: 100%;
+}
+
+.page-wrapper {
+    @include FlexContainerColumn;
+    // height: 100vh;
+    min-height: 100vh;
+}
