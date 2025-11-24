@@ -1,8 +1,14 @@
 <div class="cont">
     <div class="container text-center mt-4">
-        <div class="d-flex justify-content-start mb-4">
-            <a class="btn btn-success mb-3" href="/add">+ დამატება</a>
+        <div class="d-flex justify-content-start gap-3 mb-4">
+            <a class="btn btn-success mb-3 add-btn" href="/add"><mat-icon>post_add</mat-icon> დამატება</a>
+            <button class="btn btn-primary mb-3 stats-btn" (click)="showModal()"><mat-icon>bar_chart</mat-icon>სტატისტიკა</button>
         </div>
+
+        <ng-container *ngIf="showStatisticsModal">
+            <app-statistics-modal (closeModal)="closeModal($event)"></app-statistics-modal>
+        </ng-container>
+
         <div class="row g-4">  
             <div class="col-12 col-sm-6 col-md-4 col-lg-3" *ngFor="let item of items">
                 <div class="card h-100">

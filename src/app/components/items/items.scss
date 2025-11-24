@@ -1,6 +1,11 @@
+@import '../../styles/mixins.scss';
+
 .container {
-    // border: 1px solid;
-    // height: auto;
     padding-top: 50px;
     margin-bottom: 50px;
+
+    .stats-btn, .add-btn {
+        @include FlexContainer;
+        gap: 5px;
+    }
 }

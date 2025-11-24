@@ -6,17 +6,21 @@ import { App } from './app';
 import { Home } from './pages/home/home';
 import { Items } from './components/items/items';
 import { NewItemAddPage } from './pages/new-item-add-page/new-item-add-page';
+import { StatisticsModal } from './components/statistics-modal/statistics-modal';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
     App,
     Home,
     Items,
-    NewItemAddPage
+    NewItemAddPage,
+    StatisticsModal
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    MatIconModule
   ],
   providers: [
     provideBrowserGlobalErrorListeners()
