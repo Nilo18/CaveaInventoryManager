@@ -1,0 +1,15 @@
+// For screens above 576px
+.align-items-responsive {
+    align-items: center;
+}
+
+@media (max-width: 576px) {  
+    .responsive-width {
+        max-width: 86vw;
+        width: 100%;
+
+        .align-items-responsive {
+            align-items: flex-start;
+        }
+    }
+}
