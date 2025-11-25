@@ -8,6 +8,7 @@ import { Items } from './components/items/items';
 import { NewItemAddPage } from './pages/new-item-add-page/new-item-add-page';
 import { StatisticsModal } from './components/statistics-modal/statistics-modal';
 import { MatIconModule } from '@angular/material/icon';
+import { Pagination } from './components/pagination/pagination';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { MatIconModule } from '@angular/material/icon';
     Home,
     Items,
     NewItemAddPage,
-    StatisticsModal
+    StatisticsModal,
+    Pagination
   ],
   imports: [
     BrowserModule,

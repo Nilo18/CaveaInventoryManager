@@ -3,6 +3,10 @@
     align-items: center;
 }
 
+.bigger-padding {
+  padding: 0.45rem 0.85rem;
+}
+
 @media (max-width: 576px) {  
     .responsive-width {
         max-width: 86vw;

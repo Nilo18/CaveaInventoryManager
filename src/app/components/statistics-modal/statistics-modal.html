@@ -2,12 +2,57 @@
   <div class="stats-modal-background"></div>
   <!-- <p>The statistics modal works!</p> -->
   <!-- <p>The statistics modal works!</p> -->
-  <div class="stats-modal">
-    <div class="stats-modal-content">
+  <div class="stats-modal container-fluid">
+    <div class="stats-modal-content p-3 p-md-4">
         <div class="stats-modal-content-header">
             <p>სტატისტიკა</p>
             <mat-icon (click)="closeStatsModal() ">close</mat-icon>
         </div>
+        <div class="table-responsive">
+          <table class="table table-hover">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">კინოთეატრი</th>
+                  <th scope="col">პროდუქტების ჯამური რაოდენობა</th>
+                  <th scope="col">ჯამური საფასური</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">1</th>
+                  <td>მთავარი ოფისი</td>
+                  <td>Doe</td>
+                  <td>@social</td>
+                </tr>
+                <tr>
+                  <th scope="row">2</th>
+                  <td>კავეა გალერია</td>
+                  <td>Otto</td>
+                  <td>@mdo</td>
+                </tr>
+                <tr>
+                  <th scope="row">3</th>
+                  <td>კავეა თბილისი მოლი</td>
+                  <td>Thornton</td>
+                  <td>@fat</td>
+                </tr>
+                <tr>
+                  <th scope="row">4</th>
+                  <td>კავეა ისთ ფოინთი</td>
+                  <td>Doe</td>
+                  <td>@social</td>
+                </tr>
+                <tr>
+                  <th scope="row">5</th>
+                  <td>კავეა სითი მოლი</td>
+                  <td>Doe</td>
+                  <td>@social</td>
+                </tr>
+
+              </tbody>
+          </table>
+      </div>
     </div>
   </div> 
 </div>

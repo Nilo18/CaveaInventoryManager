@@ -61,5 +61,26 @@ html, body {
   padding-right: 15px;
 }
 
+// *** You can remove this and the stats button color will reset back to blue ***
+.custom-btn-bg {
+  background-color: #cc3399;
+  border-color: #cc3399;
+  border: none;
+  border-radius: 0.375rem;
+  color: white;
+  padding: 0.375rem 0.75rem;
+}
+
+.custom-btn-bg:hover {
+  background-color: #b52d87;
+  border-color: #b52d87;
+}
+
+.custom-btn-bg:focus-visible {
+  outline: none; /* removes default outline */
+  box-shadow: 0 0 0 0.25rem #ff92db !important; /* custom glow color */
+  border-color: #cc3399; /* optional border color change */
+}
+
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
