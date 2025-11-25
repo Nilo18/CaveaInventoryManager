@@ -1,5 +1,5 @@
 <div class="cont">
-    <div class="container text-center mt-4">
+    <!-- <div class="container text-center mt-4">
         <div class="d-flex justify-content-start gap-3 mb-4">
             <a class="btn btn-success mb-3 add-btn" href="/add"><mat-icon>post_add</mat-icon> დამატება</a>
             <button class="mb-3 stats-btn custom-btn-bg" (click)="showModal()"><mat-icon>bar_chart</mat-icon>სტატისტიკა</button>
@@ -22,5 +22,63 @@
                 </div>
             </div>
         </div>
+    </div> -->
+    <div class="container">
+        <div class="container-header">
+            <div class="d-flex flex-wrap justify-content-start gap-2 gap-md-3 mb-4">
+                <a class="btn btn-success mb-2 mb-md-0 add-btn" href="/add">
+                    <mat-icon>post_add</mat-icon> დამატება
+                </a>
+                <button class="mb-2 mb-md-0 stats-btn custom-btn-bg" (click)="showModal()">
+                    <mat-icon>bar_chart</mat-icon> სტატისტიკა
+                </button>
+            </div>
+
+            <div class="d-flex flex-wrap justify-content-start align-items-center gap-2 gap-md-3 mb-4">
+                <mat-icon>filter_list</mat-icon>
+                <select class="form-select w-50">
+                    <option value="1">ყველა</option>
+                    <option value="2">კავეა გალერია</option>
+                    <option value="3">კავეა თვილისი მოლი</option>
+                    <option value="4">კავეა ისთ ფოინთი</option>
+                    <option value="5">კავეა სითი მოლი</option>
+                </select>
+                <div class="d-flex justify-content-center align-items-center gap-3">
+                    <mat-icon>sort</mat-icon> სორტირება
+                </div>
+            </div>
+        </div>
+
+        <ng-container *ngIf="showStatisticsModal">
+            <app-statistics-modal (closeModal)="closeModal($event)"></app-statistics-modal>
+        </ng-container>
+
+        <div class="table-responsive custom-table-container">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">ნივთის სახელი</th>
+                        <th scope="col">ადგილმდებარეობა</th>
+                        <th scope="col">ფასები ლარებში</th>
+                        <th scope="col">ოპერაციები</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of items; let i = index" class="content-row">
+                        <th scope="row">{{ i + 1 }}</th>
+                        <td>{{ item.name }}</td>
+                        <td>{{ item.location }}</td>
+                        <td>{{ item.price }}</td>
+                        <td>
+                            <a class="btn btn-danger btn-sm">წაშლა</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
     </div>
 </div>
+
+

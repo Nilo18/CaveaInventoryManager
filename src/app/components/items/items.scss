@@ -1,11 +1,44 @@
 @import '../../styles/mixins.scss';
 
 .container {
+    display: flex;
+    flex-direction: column;
     padding-top: 50px;
     margin-bottom: 50px;
+    width: 1200px;
 
-    .stats-btn, .add-btn {
-        @include FlexContainer;
-        gap: 5px;
+    .container-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+
+        .stats-btn, .add-btn {
+            @include FlexContainer;
+            gap: 5px;
+        }
+    }
+
+    .custom-table-container {
+        table {
+            tr {
+                text-align: center;
+            }
+        }
+    }
+}
+
+@media (min-width: 410px) and (max-width: 576px) {
+    .container {
+        width: auto;
+    }
+}
+
+@media (max-width: 410px) {
+    .container {
+        max-width: 350px;
+        .custom-table-container {
+            overflow-x:scroll;
+        }
     }
 }
