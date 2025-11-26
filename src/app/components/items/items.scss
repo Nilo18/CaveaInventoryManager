@@ -26,6 +26,18 @@
             }
         }
     }
+
+
+    nav {
+        li {
+            cursor: pointer;
+        }
+
+        .page-link {
+            color: #cc3399;
+        }
+    }
+        
 }
 
 @media (min-width: 410px) and (max-width: 576px) {
