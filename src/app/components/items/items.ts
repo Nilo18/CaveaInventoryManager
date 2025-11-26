@@ -1,4 +1,5 @@
-import { Component, Input } from '@angular/core';
+import { ChangeDetectorRef, Component, Input } from '@angular/core';
+import { InventoryItem, InventoryService } from '../../services/inventory-service';
 // declare var bootstrap: any;
 
 @Component({
@@ -8,108 +9,16 @@ import { Component, Input } from '@angular/core';
   styleUrl: './items.scss',
 })
 export class Items {
-  items: any[] = [
-    {
-      name: "Sonic 3",
-      location: "Cavea ისთ–ფოინთ",
-      price: "33ლ",
-    },
-    {
-      name: "Sonic 3",
-      location: "Cavea ისთ–ფოინთ",
-      price: "33ლ",
-    },
-    {
-      name: "Sonic 3",
-      location: "Cavea ისთ–ფოინთ",
-      price: "33ლ",
-    },
-    {
-      name: "Sonic 3",
-      location: "Cavea ისთ–ფოინთ",
-      price: "33ლ",
-    },
-    {
-      name: "Sonic 3",
-      location: "Cavea ისთ–ფოინთ",
-      price: "33ლ",
-    },
-    {
-      name: "Sonic 3",
-      location: "Cavea ისთ–ფოინთ",
-      price: "33ლ",
-    },
-    {
-      name: "Sonic 3",
-      location: "Cavea ისთ–ფოინთ",
-      price: "33ლ",
-    },
-    {
-      name: "Sonic 3",
-      location: "Cavea ისთ–ფოინთ",
-      price: "33ლ",
-    },
-    {
-      name: "Sonic 3",
-      location: "Cavea ისთ–ფოინთ",
-      price: "33ლ",
-    },
-    {
-      name: "Sonic 3",
-      location: "Cavea ისთ–ფოინთ",
-      price: "33ლ",
-    },
-        {
-      name: "Sonic 3",
-      location: "Cavea ისთ–ფოინთ",
-      price: "33ლ",
-    },
-    {
-      name: "Sonic 3",
-      location: "Cavea ისთ–ფოინთ",
-      price: "33ლ",
-    },
-    {
-      name: "Sonic 3",
-      location: "Cavea ისთ–ფოინთ",
-      price: "33ლ",
-    },
-    {
-      name: "Sonic 3",
-      location: "Cavea ისთ–ფოინთ",
-      price: "33ლ",
-    },
-    {
-      name: "Sonic 3",
-      location: "Cavea ისთ–ფოინთ",
-      price: "33ლ",
-    },
-    {
-      name: "Sonic 3",
-      location: "Cavea ისთ–ფოინთ",
-      price: "33ლ",
-    },
-    {
-      name: "Sonic 3",
-      location: "Cavea ისთ–ფოინთ",
-      price: "33ლ",
-    },
-    {
-      name: "Sonic 3",
-      location: "Cavea ისთ–ფოინთ",
-      price: "33ლ",
-    },
-    {
-      name: "Sonic 3",
-      location: "Cavea ისთ–ფოინთ",
-      price: "33ლ",
-    },
-    {
-      name: "Sonic 3",
-      location: "Cavea ისთ–ფოინთ",
-      price: "33ლ",
-    },
-  ]
+  items: InventoryItem[] = []
+
+  constructor(private inventory: InventoryService, private cd: ChangeDetectorRef) {}
+
+  async ngOnInit() {
+    const res = await this.inventory.getInventory()
+    this.items = res
+    console.log(this.items)
+    this.cd.detectChanges()
+  }
 
   showStatisticsModal: boolean = false;
 

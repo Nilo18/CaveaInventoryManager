@@ -67,9 +67,9 @@
                 <tbody>
                     <tr *ngFor="let item of items; let i = index" class="content-row">
                         <th scope="row">{{ i + 1 }}</th>
-                        <td>{{ item.name }}</td>
-                        <td>{{ item.location }}</td>
-                        <td>{{ item.price }}</td>
+                        <td>{{ item?.name }}</td>
+                        <td>{{ item?.location?.name }}</td>
+                        <td>{{ item?.price }}</td>
                         <td>
                             <a class="btn btn-danger btn-sm">წაშლა</a>
                         </td>
