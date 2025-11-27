@@ -73,6 +73,22 @@ export class Items {
     this.cd.detectChanges()
   }
 
+  async removeItem(id: number) {
+    try {
+      await this.inventory.removeInventory(id)
+    } catch (error) {
+      return;
+    }
+
+    const suggestedItemIndex = this.items.findIndex(item => item.id === id)
+
+    if (suggestedItemIndex !== -1) {
+      this.items.splice(suggestedItemIndex, 1)
+      this.cd.detectChanges();
+    }
+    
+  }
+
   // This is a wrapper for the pagination template in HTML
   // It is necessary because ngFor can not directly loop over a number
   // This way we return an array of indeces and ngFor will be able to loop over the length of the array

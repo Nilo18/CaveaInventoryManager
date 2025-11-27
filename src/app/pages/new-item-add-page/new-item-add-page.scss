@@ -26,19 +26,58 @@ form {
     margin-top: 10px;
 }
 
+.responsive-width {
+    height: 400px;
+
+    .successMsgContainer {
+        display: flex;
+        justify-content: start;
+        align-items: center;
+        gap: 5px;
+
+        mat-icon {
+            color: green;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            vertical-align: middle; /* helps with baseline alignment */
+            line-height: 1;         /* ensure icon doesn't shift because of line-height */
+            font-size: 20px;        /* set explicit size if needed (match your text) */
+            width: 1em;             /* make icon square and match text size */
+            height: 1em;
+        }
+
+        .successMsg {
+            color: green;
+            font-size: 11px;
+            margin: 0;
+            line-height: 1;       /* tighter line-height so text centers with icon */
+            display: inline-flex; /* keeps it inline with icon while allowing center alignment */
+            align-items: center;
+        }
+    }
+
+}
+
+
+
 @media (max-width: 576px) {  
     .responsive-width {
         max-width: 86vw;
         width: 100%;
+        height: 430px;
+        padding: 20px;
+
+        input {
+            font-size: 14px;
+        }
 
         .align-items-responsive {
             align-items: flex-start;
         }
-    }
-}
 
-@media (max-width: 330px) {
-    .errMsg {
-        font-size: 9px;
+        .errMsg {
+            font-size: 9px;
+        }
     }
 }

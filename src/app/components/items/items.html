@@ -78,7 +78,7 @@
                         <td>{{ item?.location?.name }}</td>
                         <td>{{ item?.price }}</td>
                         <td>
-                            <a class="btn btn-danger btn-sm">წაშლა</a>
+                            <a class="btn btn-danger btn-sm" (click)="removeItem(item.id)">წაშლა</a>
                         </td>
                     </tr>
                 </tbody>

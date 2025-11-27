@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectorRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { InventoryItem, InventoryService } from '../../services/inventory-service';
 import { Router } from '@angular/router';
@@ -13,13 +13,16 @@ export class NewItemAddPage {
   addForm!: FormGroup
   gotError: boolean = false
   errMsg: string = ''
+  addSuccess: boolean = false
+  successMsg: string = ''
 
-  constructor(private fb: FormBuilder, private inventory: InventoryService, private router: Router) {}
+  constructor(private fb: FormBuilder, private inventory: InventoryService, private router: Router, 
+    private cd: ChangeDetectorRef) {}
 
   ngOnInit() {
     this.addForm = this.fb.group({
       location: ['მთავარი ოფისი', [Validators.required]],
-      name: ['', [Validators.required, Validators.minLength(2)]],
+      name: ['', [Validators.required]],
       price: ['', [Validators.required]]
     })
 
@@ -32,7 +35,6 @@ export class NewItemAddPage {
 
   get nameErrors() {
     if (this.addForm.get('name')?.hasError('required')) return 'გთხოვთ შეიყვანოთ ნივთის სახელი.'
-    if (this.addForm.get('name')?.hasError('minlength')) return 'ნივთის სახელი უნდა შედგებოდეს მინიმუმ 2 სიმბოლოსგან.'
     return ''
   }
 
@@ -40,6 +42,8 @@ export class NewItemAddPage {
     // Reset the error handlers on every call to avoid stale error messages
     this.gotError = false
     this.errMsg = ''
+    this.addSuccess = false
+    this.successMsg = ''
 
     if (this.addForm.invalid) {
       this.addForm.markAllAsTouched()
@@ -49,13 +53,26 @@ export class NewItemAddPage {
 
     try {
       console.log(this.addForm.value)
-      // Disable the button for sometime to prevent spamming
       const res = await this.inventory.addInventory(this.addForm.value)
+      this.addSuccess = true
+      this.successMsg = 'დაემატა წარმატებით!'
+      // Reset the success message after 2 seconds
+      setTimeout(() => {
+        this.addSuccess = false
+        this.successMsg = ''
+        console.log(this.addSuccess, this.successMsg)
+        this.cd.detectChanges()
+      }, 2000)
+      this.cd.detectChanges()
       // this.router.navigate(['/'])
     } catch (error: any) {
-      console.log(error.error)
       this.gotError = true
-      this.errMsg = 'დამატებისას მოხდა შეცდომა, გთხოვთ სცადეთ ახლიდან.'
+      console.log(this.gotError)
+      this.errMsg = 'დამატებისას მოხდა შეცდომა.'
+      this.addSuccess = false
+      this.successMsg = ''
+      this.cd.detectChanges()
+      console.log(this.errMsg)
     }
   }
 }

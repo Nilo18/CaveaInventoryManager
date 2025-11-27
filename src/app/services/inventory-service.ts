@@ -7,7 +7,7 @@ interface Location {
 }
 
 export interface InventoryItem {
-  id?: number
+  id: number
   name: string
   price: number
   locationId?: number
@@ -19,6 +19,11 @@ export interface InventoryItem {
 interface InventoryGetResponse {
   items: InventoryItem[]
   pageCount: number
+}
+
+interface InventoryDeleteResponse {
+  success: boolean,
+  deletedAmount: number
 }
 
 @Injectable({
@@ -64,7 +69,7 @@ export class InventoryService {
       const res = await firstValueFrom(this.http.get<InventoryGetResponse>(`${this.baseURL}/inventories?${query}`))
       console.log(res)
       return res
-    } catch (error) {
+    } catch (error: any) {
       console.log(`Couldn't get the inventory items: ${error}`)
       throw error
     }
@@ -77,6 +82,17 @@ export class InventoryService {
       return res
     } catch (error: any) {
       console.log("Couldn't add new inventory item: ", error)
+      throw error
+    }
+  }
+
+  async removeInventory(id: number) {
+    try {
+      const res = await firstValueFrom(this.http.delete<InventoryDeleteResponse>(`${this.baseURL}/inventories/${id}`))
+      console.log(res)
+      return res
+    } catch (error: any) {
+      console.log("Couldn't remove inventory item: ", error)
       throw error
     }
   }

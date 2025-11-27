@@ -42,6 +42,18 @@
 
             <button type="submit" class="custom-btn-bg bigger-padding mt-4">დამატება</button>
         </form>
-        <p class="errMsg backendErr">{{gotError ? errMsg : ''}}</p>    
+        <p class="errMsg backendErr">{{gotError ? errMsg : ''}}</p>
+        <ng-container *ngIf="addSuccess && !gotError; else showEmpty">
+            <div class="successMsgContainer">
+                <mat-icon>task_alt</mat-icon>
+                <p class="successMsg">{{successMsg}}</p>  
+            </div>
+        </ng-container>
+
+        <ng-template #showEmpty>
+            <p></p>
+        </ng-template>
+
+          
     </div>
 </div>
