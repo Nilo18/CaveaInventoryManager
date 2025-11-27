@@ -82,5 +82,11 @@ html, body {
   border-color: #cc3399; /* optional border color change */
 }
 
+.errMsg {
+  color: red;
+  font-size: 12px;
+  line-height: 0;
+}
+
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

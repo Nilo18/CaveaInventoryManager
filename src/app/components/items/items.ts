@@ -13,12 +13,14 @@ export class Items {
   filterOption: string = 'ყველა'
   sortOption: string = 'სახელით'
   page: number = 1
+  pageCount!: number
 
   constructor(private inventory: InventoryService, private cd: ChangeDetectorRef) {}
 
   async ngOnInit() {
     const res = await this.inventory.getInventory()
-    this.items = res
+    this.items = res.items
+    this.pageCount = res.pageCount
     console.log(this.items)
     this.cd.detectChanges()
   }
@@ -27,12 +29,13 @@ export class Items {
     const res = await this.inventory.getInventory(this.page, this.filterOption, this.sortOption)
     console.log(this.filterOption)
     console.log(this.sortOption)
-    this.items = res
+    this.items = res.items
+    this.pageCount = res.pageCount
     this.cd.detectChanges()
   }
 
   calculateNextPage() {
-    this.page = this.page < 5 ? this.page + 1 : 1
+    this.page = this.page < this.pageCount ? this.page + 1 : 1
     return this.page
     // return currPage + 1
     // return this.page + 1
@@ -42,7 +45,8 @@ export class Items {
     const nextPage = this.calculateNextPage()
     console.log(nextPage)
     const res = await this.inventory.getInventory(nextPage, this.filterOption, this.sortOption)
-    this.items = res
+    this.items = res.items
+    this.pageCount = res.pageCount
     this.cd.detectChanges()
   }
 
@@ -55,7 +59,8 @@ export class Items {
     console.log(pageNumber)
     this.page = pageNumber
     const res = await this.inventory.getInventory(this.page, this.filterOption, this.sortOption)
-    this.items = res
+    this.items = res.items
+    this.pageCount = res.pageCount
     this.cd.detectChanges()
   }
 
@@ -63,8 +68,16 @@ export class Items {
     const prevPage = this.calculatePreviousPage()
     console.log(prevPage)
     const res = await this.inventory.getInventory(prevPage, this.filterOption, this.sortOption)
-    this.items = res
+    this.items = res.items
+    this.pageCount = res.pageCount
     this.cd.detectChanges()
+  }
+
+  // This is a wrapper for the pagination template in HTML
+  // It is necessary because ngFor can not directly loop over a number
+  // This way we return an array of indeces and ngFor will be able to loop over the length of the array
+  getPageCount() {
+    return Array.from({length: this.pageCount}, (_, i) => i)
   }
 
   showModal() {

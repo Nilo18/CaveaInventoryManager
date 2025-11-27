@@ -38,6 +38,7 @@
                 <mat-icon>filter_list</mat-icon>
                 <select class="form-select w-50" [(ngModel)]="filterOption" (ngModelChange)="applySortsAndFilters()">
                     <option value="ყველა">ყველა</option>
+                    <option value="მთავარი ოფისი">მთავარი ოფისი</option>
                     <option value="კავეა გალერია">კავეა გალერია</option>
                     <option value="კავეა თბილისი მოლი">კავეა თბილისი მოლი</option>
                     <option value="კავეა ისთ ფოინთი">კავეა ისთ ფოინთი</option>
@@ -91,11 +92,14 @@
                             <span aria-hidden="true">&laquo;</span>
                         </a>
                     </li>
-                    <li class="page-item" (click)="getPageByNumber(1)"><a class="page-link">1</a></li>
-                    <li class="page-item" (click)="getPageByNumber(2)"><a class="page-link">2</a></li>
+                    <div *ngFor="let i of getPageCount();">
+                        <li class="page-item" (click)="getPageByNumber(i + 1)"><a class="page-link">{{i + 1}}</a></li>
+                    </div>
+                    
+                    <!-- <li class="page-item" (click)="getPageByNumber(2)"><a class="page-link">2</a></li>
                     <li class="page-item" (click)="getPageByNumber(3)"><a class="page-link">3</a></li>
                     <li class="page-item" (click)="getPageByNumber(4)"><a class="page-link">4</a></li>
-                    <li class="page-item" (click)="getPageByNumber(5)"><a class="page-link">5</a></li>
+                    <li class="page-item" (click)="getPageByNumber(5)"><a class="page-link">5</a></li> -->
                     <li class="page-item" (click)="getNextPage()">
                         <a class="page-link" aria-label="Next">
                             <span aria-hidden="true">&raquo;</span>

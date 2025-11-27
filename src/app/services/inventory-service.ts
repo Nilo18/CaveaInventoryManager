@@ -7,13 +7,18 @@ interface Location {
 }
 
 export interface InventoryItem {
-  id: number
+  id?: number
   name: string
   price: number
   locationId?: number
   createdAt?: Date
   updatedAt?: Date
   location: Location
+}
+
+interface InventoryGetResponse {
+  items: InventoryItem[]
+  pageCount: number
 }
 
 @Injectable({
@@ -56,11 +61,22 @@ export class InventoryService {
       const query = queryParts.join('&')
       console.log(query)
 
-      const res = await firstValueFrom(this.http.get<InventoryItem[]>(`${this.baseURL}/inventories?${query}`))
+      const res = await firstValueFrom(this.http.get<InventoryGetResponse>(`${this.baseURL}/inventories?${query}`))
       console.log(res)
       return res
     } catch (error) {
       console.log(`Couldn't get the inventory items: ${error}`)
+      throw error
+    }
+  }
+
+  async addInventory(newItem: InventoryItem) {
+    try {
+      const res = await firstValueFrom(this.http.post<InventoryItem>(`${this.baseURL}/inventories`, newItem))
+      console.log("The new item is: " + res)
+      return res
+    } catch (error: any) {
+      console.log("Couldn't add new inventory item: ", error)
       throw error
     }
   }

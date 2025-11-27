@@ -9,7 +9,7 @@ import { NewItemAddPage } from './pages/new-item-add-page/new-item-add-page';
 import { StatisticsModal } from './components/statistics-modal/statistics-modal';
 import { MatIconModule } from '@angular/material/icon';
 import { Pagination } from './components/pagination/pagination';
-import { FormsModule } from '@angular/forms'
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 
 @NgModule({
   declarations: [
@@ -24,7 +24,8 @@ import { FormsModule } from '@angular/forms'
     BrowserModule,
     AppRoutingModule,
     MatIconModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [
     provideBrowserGlobalErrorListeners()

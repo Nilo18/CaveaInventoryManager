@@ -7,6 +7,25 @@
   padding: 0.45rem 0.85rem;
 }
 
+form {
+    .disabledButton {
+        background-color: gray;
+        cursor: not-allowed;
+    }
+
+    button {    
+        cursor: pointer;
+    }
+
+    // .errMsg {
+    //     height: 1px;
+    // }
+}
+
+.backendErr {
+    margin-top: 10px;
+}
+
 @media (max-width: 576px) {  
     .responsive-width {
         max-width: 86vw;
@@ -15,5 +34,11 @@
         .align-items-responsive {
             align-items: flex-start;
         }
+    }
+}
+
+@media (max-width: 330px) {
+    .errMsg {
+        font-size: 9px;
     }
 }
