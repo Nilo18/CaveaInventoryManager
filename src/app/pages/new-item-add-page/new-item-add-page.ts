@@ -2,6 +2,7 @@ import { Component, ChangeDetectorRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { InventoryItem, InventoryService } from '../../services/inventory-service';
 import { Router } from '@angular/router';
+import { LocationService } from '../../services/location-service';
 
 @Component({
   selector: 'app-new-item-add-page',
@@ -15,16 +16,21 @@ export class NewItemAddPage {
   errMsg: string = ''
   addSuccess: boolean = false
   successMsg: string = ''
+  locations: any[] = []
 
   constructor(private fb: FormBuilder, private inventory: InventoryService, private router: Router, 
-    private cd: ChangeDetectorRef) {}
+    private cd: ChangeDetectorRef, private locationService: LocationService) {}
 
-  ngOnInit() {
+  async ngOnInit() {
     this.addForm = this.fb.group({
       location: ['მთავარი ოფისი', [Validators.required]],
       name: ['', [Validators.required]],
       price: ['', [Validators.required]]
     })
+
+    const locResponse = await this.locationService.getLocations()
+    this.locations = locResponse.locations
+    this.cd.detectChanges()
 
     // Disable backend errors on input field changes
     this.addForm.valueChanges.subscribe(() => {

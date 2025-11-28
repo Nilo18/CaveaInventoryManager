@@ -3,13 +3,22 @@
         <form [formGroup]="addForm" (ngSubmit)="addNewItem()">
             <div class="d-flex flex-column flex-sm-row align-items-responsive gap-3 mb-3">
                 <label for="locationSelect" class="form-label">ადგილმდებარეობა</label>
-                <select name="locationSelect" class="form-select" formControlName="location">
-                    <option value="მთავარი ოფისი">მთავარი ოფისი</option>
-                    <option value="კავეა გალერია">კავეა გალერია</option>
-                    <option value="კავეა თბილისი მოლი">კავეა თბილისი მოლი</option>
-                    <option value="კავეა ისთ ფოინთი">კავეა ისთ ფოინთი</option>
-                    <option value="კავეა სითი მოლი">კავეა სითი მოლი</option>
-                </select>
+                <!-- Inline styling is applied to this select element to make sure that
+                     it doesn't shrink while data is loading 
+                -->
+                <ng-container *ngIf="locations.length !== 0; else showEmptySelect">
+                    <select name="locationSelect" class="form-select" formControlName="location">
+                        <div *ngFor="let location of locations" >
+                            <option [value]="location.name">{{location.name}}</option>
+                        </div>
+                    </select>
+                </ng-container>
+
+                <ng-template #showEmptySelect>
+                    <select name="emptySelect" class="form-select">
+                        <option>ლოკაციები ვერ მოიძებნა</option>
+                    </select>
+                </ng-template>
             </div>
 
             <!--

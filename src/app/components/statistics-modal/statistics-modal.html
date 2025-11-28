@@ -16,42 +16,48 @@
                   <th scope="col">კინოთეატრი</th>
                   <th scope="col">პროდუქტების ჯამური რაოდენობა</th>
                   <th scope="col">ჯამური საფასური</th>
+                  <th scope="col">ოპერაციები</th>
                 </tr>
               </thead>
-              <tbody>
-                <tr>
-                  <th scope="row">1</th>
-                  <td>მთავარი ოფისი</td>
-                  <td>Doe</td>
-                  <td>@social</td>
-                </tr>
-                <tr>
-                  <th scope="row">2</th>
-                  <td>კავეა გალერია</td>
-                  <td>Otto</td>
-                  <td>@mdo</td>
-                </tr>
-                <tr>
-                  <th scope="row">3</th>
-                  <td>კავეა თბილისი მოლი</td>
-                  <td>Thornton</td>
-                  <td>@fat</td>
-                </tr>
-                <tr>
-                  <th scope="row">4</th>
-                  <td>კავეა ისთ ფოინთი</td>
-                  <td>Doe</td>
-                  <td>@social</td>
-                </tr>
-                <tr>
-                  <th scope="row">5</th>
-                  <td>კავეა სითი მოლი</td>
-                  <td>Doe</td>
-                  <td>@social</td>
-                </tr>
+              <tbody>   
+                <tr *ngFor="let location of locationStats; let index = index">
+                  <th scope="row">{{index + 1}}</th>
+                  <ng-container *ngIf="nameFlags[index]; else showLocationName">
+                    <td class="location-update-cell">
+                      <input type="text" class="form-control location-update-input"
+                       [(ngModel)]="updatedLocationName" (keydown.enter)="updateLocation(location.id)">
+                    </td>
+                  </ng-container>
 
+                  <ng-template #showLocationName>
+                    <td>{{location.name}}</td>
+                  </ng-template>
+                   
+                  <td>{{location.totalItems}}</td>
+                  <td>{{location.totalPrice}}</td>
+                  <td class="operations-table-cell">
+                    <div class="ops-wrapper">
+                      <mat-icon (click)="toggleLocationUpdate(location.id)">edit_square</mat-icon>
+                      <a class="btn btn-danger btn-sm" (click)="deleteLocation(location.id)">წაშლა</a>  
+                    </div>
+                  </td>
+                </tr>
               </tbody>
           </table>
+      </div>
+
+      <div class="add-btn-container">
+        <ng-container *ngIf="showAddModal">
+          <div class="location-addition-modal border">
+            <div class="location-addition-modal-content">
+              <input type="text" class="location-addition-modal-input border" placeholder="ლოკაციის სახელი"
+              [(ngModel)]="newLocationName">
+              <button class="btn btn-primary btn-success" (click)="addNewLocation()">დამატება</button>
+            </div>
+          </div>
+        </ng-container>
+
+        <div class="btn btn-success add-button" (click)="toggleAdditionMmodal(true)">+</div>
       </div>
     </div>
   </div> 

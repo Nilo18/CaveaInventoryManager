@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { firstValueFrom } from 'rxjs';
+import { BaseUrlHolderService } from './base-url-holder-service';
 
 interface Location {
   name: string
@@ -30,12 +31,15 @@ interface InventoryDeleteResponse {
   providedIn: 'root',
 })
 export class InventoryService {
-  private baseURL = 'http://localhost:3000'
+  private baseURL: string
+
+  constructor(private http: HttpClient, private urlHolder: BaseUrlHolderService) {
+    this.baseURL = this.urlHolder.getBaseURL()
+  }
+
   private pageNumber?: number = 1
   private filterBy?: string = 'ყველა'
   private sortBy?: string = 'სახელით'
-
-  constructor(private http: HttpClient) {}
 
   async getInventory(page?: number, filter?: string, sort?: string) {
     try {

@@ -38,11 +38,14 @@
                 <mat-icon>filter_list</mat-icon>
                 <select class="form-select w-50" [(ngModel)]="filterOption" (ngModelChange)="applySortsAndFilters()">
                     <option value="ყველა">ყველა</option>
-                    <option value="მთავარი ოფისი">მთავარი ოფისი</option>
+                    <div *ngFor="let location of locations" >
+                        <option [value]="location.name">{{location.name}}</option>
+                    </div>
+                    <!-- <option value="მთავარი ოფისი">მთავარი ოფისი</option>
                     <option value="კავეა გალერია">კავეა გალერია</option>
                     <option value="კავეა თბილისი მოლი">კავეა თბილისი მოლი</option>
                     <option value="კავეა ისთ ფოინთი">კავეა ისთ ფოინთი</option>
-                    <option value="კავეა სითი მოლი">კავეა სითი მოლი</option>
+                    <option value="კავეა სითი მოლი">კავეა სითი მოლი</option> -->
                 </select>
                 <div class="d-flex justify-content-center align-items-center gap-3">
                     <mat-icon>sort</mat-icon> 
@@ -95,7 +98,42 @@
                     <div *ngFor="let i of getPageCount();">
                         <li class="page-item" (click)="getPageByNumber(i + 1)"><a class="page-link">{{i + 1}}</a></li>
                     </div>
-                    
+                    <!-- <li class="page-item"><a class="page-link">6</a></li>
+                    <li class="page-item"><a class="page-link">6</a></li>
+                    <li class="page-item"><a class="page-link">6</a></li>
+                    <li class="page-item"><a class="page-link">6</a></li>
+                    <li class="page-item"><a class="page-link">6</a></li>
+                    <li class="page-item"><a class="page-link">6</a></li>
+                    <li class="page-item"><a class="page-link">6</a></li>
+                    <li class="page-item"><a class="page-link">6</a></li>
+                    <li class="page-item"><a class="page-link">6</a></li>
+                    <li class="page-item"><a class="page-link">6</a></li>
+                    <li class="page-item"><a class="page-link">6</a></li>
+                    <li class="page-item"><a class="page-link">6</a></li>
+                    <li class="page-item"><a class="page-link">6</a></li>
+                    <li class="page-item"><a class="page-link">6</a></li>
+                    <li class="page-item"><a class="page-link">6</a></li>
+                    <li class="page-item"><a class="page-link">6</a></li>
+                    <li class="page-item"><a class="page-link">6</a></li>
+                    <li class="page-item"><a class="page-link">6</a></li>
+                    <li class="page-item"><a class="page-link">6</a></li>
+                    <li class="page-item"><a class="page-link">6</a></li>
+                    <li class="page-item"><a class="page-link">6</a></li>
+                    <li class="page-item"><a class="page-link">6</a></li>
+                    <li class="page-item"><a class="page-link">6</a></li>
+                    <li class="page-item"><a class="page-link">6</a></li>
+                    <li class="page-item"><a class="page-link">6</a></li>
+                    <li class="page-item"><a class="page-link">6</a></li>
+                    <li class="page-item"><a class="page-link">6</a></li>
+                    <li class="page-item"><a class="page-link">6</a></li>
+                    <li class="page-item"><a class="page-link">6</a></li>
+                    <li class="page-item"><a class="page-link">6</a></li>
+                    <li class="page-item"><a class="page-link">6</a></li>
+                    <li class="page-item"><a class="page-link">6</a></li>
+                    <li class="page-item"><a class="page-link">6</a></li>
+                    <li class="page-item"><a class="page-link">6</a></li>
+                    <li class="page-item"><a class="page-link">6</a></li> -->
+
                     <!-- <li class="page-item" (click)="getPageByNumber(2)"><a class="page-link">2</a></li>
                     <li class="page-item" (click)="getPageByNumber(3)"><a class="page-link">3</a></li>
                     <li class="page-item" (click)="getPageByNumber(4)"><a class="page-link">4</a></li>

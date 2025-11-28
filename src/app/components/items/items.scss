@@ -23,6 +23,10 @@
         table {
             tr {
                 text-align: center;
+                
+                td, th {
+                    vertical-align: middle;
+                }
             }
         }
     }

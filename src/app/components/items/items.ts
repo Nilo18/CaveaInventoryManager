@@ -1,5 +1,6 @@
 import { ChangeDetectorRef, Component, Input } from '@angular/core';
 import { InventoryItem, InventoryService } from '../../services/inventory-service';
+import { LocationService } from '../../services/location-service';
 
 @Component({
   selector: 'app-items',
@@ -14,14 +15,18 @@ export class Items {
   sortOption: string = 'სახელით'
   page: number = 1
   pageCount!: number
+  locations: any[] = []
 
-  constructor(private inventory: InventoryService, private cd: ChangeDetectorRef) {}
+  constructor(private inventory: InventoryService, private locationService: LocationService, private cd: ChangeDetectorRef) {}
 
   async ngOnInit() {
     const res = await this.inventory.getInventory()
     this.items = res.items
     this.pageCount = res.pageCount
     console.log(this.items)
+    const locResponse = await this.locationService.getLocations()
+    this.locations = locResponse.locations
+    console.log("Locations received on the main page are: ", this.locations)
     this.cd.detectChanges()
   }
 
